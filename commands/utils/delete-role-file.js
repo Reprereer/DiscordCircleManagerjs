@@ -2,20 +2,20 @@ const Discord = require('discord.js');
 const memlist = require('../../meibo.json');
 
 module.exports = {
-    name: "add-role-file",
-    description: "ボットに読み込まれてる名簿ファイル全員に指定されたロールを与えるよ",
+    name: "delete-role-file",
+    description: "ボットに読み込まれてる名簿ファイル全員から指定されたロールを削除するよ",
     execute(message, args){
         const role = message.guild.roles.cache.find(role => role.name === args[0]);
         
         const username;
         for(const elem of memlist){
             const member =client.users.fetch(elem);
-            member.add.roles(role);
+            member.delete.roles(role);
             //send ans in embed.
             username.push(member.name);
         }
         const embed = new Discord.MessageEmbed()
-            .setTitle('ロールを付与しました')
+            .setTitle('ロールを削除しました')
             .addField( 'ロール', `${role.name}`)
             .addField('名前', `${username.join(',')}`);
     },
