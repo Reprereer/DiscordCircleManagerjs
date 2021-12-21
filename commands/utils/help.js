@@ -30,7 +30,6 @@ module.exports = {
         const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
 
-
         if(!command) {
             return message.reply('そのコマンドは知らないよ');
         }

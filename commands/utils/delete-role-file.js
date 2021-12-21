@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const fs = require('fs');
-const parse = require('csv-parse/lib/sync');
 
 module.exports = {
     name: "delete-role-file",
@@ -9,12 +8,10 @@ module.exports = {
         const role = message.guild.roles.cache.find(role => role.name === args[0]);
         
         const data = fs.reacFileSync('meibo.csv');
-        const records = parse(data, {
-            columns: true,
-        });
+        
 
         var username= new Array();
-        for(const elem of records){
+        for(const elem of data){
             const member =client.users.fetch(elem);
             member.delete.roles(role);
             //send ans in embed.
